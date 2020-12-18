@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -22,10 +22,11 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('cars-dashboard');
   });
 
-  it('should render title', () => {
+  it('should render Navbar title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('cars-dashboard app is running!');
+    expect(compiled.querySelector('.toolbar span').textContent).toContain('Latest Cars Dashboard');
   });
+
 });

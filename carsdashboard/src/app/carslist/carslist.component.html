@@ -29,10 +29,18 @@
   </div>
    
     <div class="card-container">
-      <div class="card"  *ngFor="let car of filteredCars; index as i;">
-        <img src={{car.picture_url}} height="150" width="250" alt="cars">
-        <p class="car-header">{{car.make}}</p>
-        <button mat-raised-button [routerLink]="['car', car._id]" >Show More</button>
-      </div>
+      <ng-container *ngIf="filteredCars">
+        <div class="card"  *ngFor="let car of filteredCars; index as i;">
+          <img src={{car.picture_url}} height="150" width="250" alt="cars">
+          <p class="car-header">{{car.make}}</p>
+          <button mat-raised-button [routerLink]="['car', car._id]" >Show More</button>
+        </div>
+      </ng-container>
+        <div *ngIf="loading">
+           Loading...
+        </div>
+        <div *ngIf="noData">
+          No cars available.
+       </div>
     </div>
 </div>

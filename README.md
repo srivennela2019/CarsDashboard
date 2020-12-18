@@ -4,7 +4,7 @@
 
 ## Installation
 ### Front end Setup 
-  - Please make sure you have the latest version of Angular installed
+  - Please make sure you have the latest version of Angular installed.
   - npm install
   - ng serve
   - Application should run on localhost:4200
@@ -34,3 +34,7 @@ Please refer to the Screenshots folder for views of the application and api data
  - GET request on http://localhost:3000/api/dashboard/car/:id for getting individual car data.
  - GET request on http://localhost:3000/api/dashboard/cars for getting all cars data.
  - POST request on http://localhost:3000/api/dashboard/ for adding new car data
+
+### Versions
+ - Angular 11
+ - Node.js v12.8.4

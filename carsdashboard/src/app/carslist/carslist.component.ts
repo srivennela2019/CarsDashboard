@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSelectChange } from "@angular/material/select";
 import { CarsService } from '.././carservice/cars.service';
@@ -18,13 +18,17 @@ export class CarslistComponent implements OnInit {
         q4: [10, 11, 12]
     }
     selectedQuarter: string = 'full_year';
+    noData:boolean = false;
+    loading:boolean = false;
     selectedStat:string;
     filteredCars: Car[];
     selectedQuarterControl = new FormControl(this.selectedQuarter);
     cars: Car[];
 
     ngOnInit() {
+        this.loading = true;
         this._carsService.getCars().subscribe((cars:Car[]) => {
+            this.loading = false;
             this.cars = cars;
             this.filteredCars = this.cars;
         })
@@ -75,6 +79,6 @@ export class CarslistComponent implements OnInit {
         });
         return filteredCars;
     }
-
+    
 }
 
