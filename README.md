@@ -1,6 +1,6 @@
 # Cars Dashboard
  Created a dashboard that features cars from 2020. Can apply fiters on the dashboards using 
- quarterly timeline (Q1 2020, Q2 2020, Q3 2020 and Q4 2020) and also based on release status(Released/ Upcoming). You can click on show more button under each car to view more about the car. You can click on Reset button to Reset the filter. Within the details page You can click on the Return to Home button or the logo on the navbar to go back to home page. It is equipped with Mobile view as well.
+ quarterly timeline (Q1 2020, Q2 2020, Q3 2020 and Q4 2020) and also based on release status(Released/ Upcoming).Both the filters work in conjunction as well. You can click on show more button under each car to view more about the car. You can click on Reset button to Reset the filter. Within the details page You can click on the Return to Home button or the logo on the navbar to go back to home page. It is equipped with Mobile view as well.
 
 ## Installation
 ### Front end Setup

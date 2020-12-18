@@ -4,11 +4,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Cars in each quarter </mat-label>
         <mat-select (selectionChange)="selectedValue($event)" [(value)]="selectedQuarter">
-          <mat-option value="full_year">2020 Full year</mat-option>
-          <mat-option value="q1">2020 Q1</mat-option>
-          <mat-option value="q2">2020 Q2</mat-option>
-          <mat-option value="q3">2020 Q3</mat-option>
-          <mat-option value="q4">2020 Q4</mat-option>
+          <mat-option *ngFor="let quarter of quarters; index as i;" value="{{quarter.value}}">{{quarter.label}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -17,8 +13,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Cars Release status </mat-label>
         <mat-select (selectionChange)="selectedStatus($event)" [(value)]="selectedStat">
-          <mat-option value="Released">Released</mat-option>
-          <mat-option value="Upcoming">Upcoming</mat-option>
+          <mat-option  *ngFor="let stat of status; index as i;" value="{{stat}}">{{stat}}</mat-option>
         </mat-select>
       </mat-form-field>
      </div>

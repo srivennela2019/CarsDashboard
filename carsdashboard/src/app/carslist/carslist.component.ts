@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSelectChange } from "@angular/material/select";
 import { CarsService } from '.././carservice/cars.service';
-import { Car } from '../types';
+import { Car, Quarter } from '../types';
+
 @Component({
     selector: 'app-carslist',
     templateUrl: './carslist.component.html',
@@ -11,23 +12,19 @@ import { Car } from '../types';
 })
 export class CarslistComponent implements OnInit {
     constructor(private _carsService: CarsService) { }
-    quarterValues = {
-        q1: [1, 2, 3],
-        q2: [4, 5, 6],
-        q3: [7, 8, 9],
-        q4: [10, 11, 12]
-    }
     selectedQuarter: string = 'full_year';
-    noData:boolean = false;
-    loading:boolean = false;
-    selectedStat:string;
+    noData: boolean = false;
+    loading: boolean = false;
+    selectedStat: string = 'None';
     filteredCars: Car[];
     selectedQuarterControl = new FormControl(this.selectedQuarter);
     cars: Car[];
+    quarters: Quarter[] = [{ label: '2020 Full Year', value: 'full_year' }, { label: '2020 Q1', value: 'q1' }, { label: '2020 Q2', value: 'q2' }, { label: '2020 Q3', value: 'q3' }, { label: '2020 Q4', value: 'q4' }];
+    status: string[] = ['None', 'Released', 'Upcoming'];
 
     ngOnInit() {
         this.loading = true;
-        this._carsService.getCars().subscribe((cars:Car[]) => {
+        this._carsService.getCars().subscribe((cars: Car[]) => {
             this.loading = false;
             this.cars = cars;
             this.filteredCars = this.cars;
@@ -35,50 +32,39 @@ export class CarslistComponent implements OnInit {
     }
 
     selectedValue(event: MatSelectChange) {
-        this.filterCars(event.value);
+        this.noData = false;
+        if (this.selectedStat === 'None') {
+            this.filteredCars = this._carsService.filterCars(this.cars, event.value);
+        } else {
+            this.filteredCars = this._carsService.filterCars(this.cars, this.selectedQuarter).filter(car => {
+                return car.released === this.selectedStat;
+            })
+        }
+        if (this.filteredCars.length === 0) {
+            this.noData = true;
+        }
     }
 
-    selectedStatus(event: MatSelectChange){
-        console.log(event.value);
-        this.filteredCars = this.cars.filter(car=>{
-            return car.released === event.value;
-        })
+    selectedStatus(event: MatSelectChange) {
+        this.noData = false;
+        if (event.value == "None") {
+            this.filteredCars = this._carsService.filterCars(this.cars, this.selectedQuarter);
+        } else {
+            this.filteredCars = this._carsService.filterCars(this.cars, this.selectedQuarter).filter(car => {
+                return car.released === event.value;
+            })
+        }
+        if (this.filteredCars.length === 0) {
+            this.noData = true;
+        }
     }
-     
-    reset(){
-        this.selectedStat = "";
+
+    reset() {
+        this.noData = false;
+        this.selectedStat = "None";
         this.selectedQuarter = "full_year";
         this.filteredCars = this.cars;
     }
 
-    filterCars(quarter: string) {
-        this.selectedStat = ""
-        console.log(quarter, "quarter")
-        switch (quarter) {
-            case 'full_year':
-                this.filteredCars = this.cars;
-                break;
-            case 'q1':
-                this.filteredCars = this.applyFilter('q1');
-                break;
-            case 'q2':
-                this.filteredCars = this.applyFilter('q2');
-                break;
-            case 'q3':
-                this.filteredCars = this.applyFilter('q3');
-                break;
-            case 'q4':
-                this.filteredCars = this.applyFilter('q4');
-                break;
-        }
-
-    }
-    applyFilter(quarter) {
-        let filteredCars = this.cars.filter(car => {
-            return (this.quarterValues[quarter].includes(parseInt(car['date'].slice(0, car['date'].indexOf('-')))))
-        });
-        return filteredCars;
-    }
-    
 }
 

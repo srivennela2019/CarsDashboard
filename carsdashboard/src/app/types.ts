@@ -7,3 +7,8 @@ export interface Car {
   released?:string;
   picture_url?:string
 }
+
+export interface Quarter {
+   label:string;
+   value:string;
+}
