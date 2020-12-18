@@ -3,21 +3,25 @@
  quarterly timeline (Q1 2020, Q2 2020, Q3 2020 and Q4 2020) and also based on release status(Released/ Upcoming). You can click on show more button under each car to view more about the car. You can click on Reset button to Reset the filter. Within the details page You can click on the Return to Home button or the logo on the navbar to go back to home page. It is equipped with Mobile view as well.
 
 ## Installation
-### Front end Setup 
-  - Please make sure you have the latest version of Angular installed.
+### Front end Setup
+  - Please refer to README in carsdashboard.
+  - cd carsdashboard
+  - npm install -g @angular/cli@latest
   - npm install
   - ng serve
   - Application should run on localhost:4200
 ### Backend end Setup 
-  - The database is already on cloud.
+  - The database is on cloud. The credentials are in the code file as well. Just for sample project purpose. Normally i dotenv library and .env file to configure my credentials.
+  - cd server
   - npm install
   - node server.js
   - Server should run on localhost:3000
 ### Utilized Libraries
 - On the backend used Node.js as runtime and MongoDB as database.
-  - It is a simple dataset with database name cars and collection name cars that has documents of type: 
+- It is a simple dataset with database name cars and collection name cars that has documents of type: 
 
   ```sh
+
   { _id?:string;
   make?:string;
   model?:string;
@@ -26,8 +30,9 @@
   released?:string;
   picture_url?:string
  }
+
 ```
- - The front end is built using Angular framework.
+- The front end is built using Angular framework.
 Please refer to the Screenshots folder for views of the application and api data screen shots.
 
 ### Api Endpoints
