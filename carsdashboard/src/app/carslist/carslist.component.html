@@ -25,11 +25,7 @@
    
     <div class="card-container">
       <ng-container *ngIf="filteredCars">
-        <div class="card"  *ngFor="let car of filteredCars; index as i;">
-          <img src={{car.picture_url}} height="150" width="250" alt="cars">
-          <p class="car-header">{{car.make}}</p>
-          <button mat-raised-button [routerLink]="['car', car._id]" >Show More</button>
-        </div>
+        <app-smallcar *ngFor="let car of filteredCars; index as i;" [car]='car'></app-smallcar>
       </ng-container>
         <div *ngIf="loading">
            Loading...

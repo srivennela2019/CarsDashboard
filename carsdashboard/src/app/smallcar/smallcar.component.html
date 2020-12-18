@@ -1,0 +1,5 @@
+<div class="card">
+    <img src={{car.picture_url}} height="150" width="250" alt="cars">
+    <p class="car-header">{{car.make}}</p>
+    <button mat-raised-button [routerLink]="['car', car._id]" >Show More</button>
+  </div>
