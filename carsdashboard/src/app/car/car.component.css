@@ -7,13 +7,16 @@ p,h1{
 
 img{
     padding:10px;
+    width:70%;
+    flex-shrink: 0;
+    max-height: 600px;
 }
 .car-info{
     display:flex;
     flex-direction:row;
     border: 1px solid grey;
     padding:10px;
-    
+    height:100%;
 }
 
 .card{
@@ -43,9 +46,4 @@ img{
   
   }
 
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
+  
